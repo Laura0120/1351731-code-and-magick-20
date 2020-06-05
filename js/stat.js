@@ -70,10 +70,8 @@ window.renderStatistics = function (ctx, players, times) {
     ctx.fillText(players[i], xCoord, BAR_CHART_Y);
 
     // Рисуем колонку
-    ctx.fillStyle = getRandomBlueColor();
-    if (players[i] === 'Вы') {
-      ctx.fillStyle = USER_COLOR;
-    }
+    ctx.fillStyle = players[i] === 'Вы' ? USER_COLOR : getRandomBlueColor();
+
     ctx.fillRect(xCoord, BAR_CHART_Y - TEXT_HEIGHT - heightBar, BAR_WIDTH, heightBar);
   }
 };
