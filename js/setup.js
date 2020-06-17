@@ -13,6 +13,8 @@ var COAT_COLOR = [
 var EYES_COLOR = ['red', 'blue', 'yellow', 'green', 'black'];
 var WIZARDS_COUNT = 4;
 var FIREBALL_COLORS = ['#30a8ee', '#5ce6c0', '#e848d5', '#e6e848', '#ee4830'];
+var KEY_ESC = 'Escape';
+var KEY_ENTER = 'Enter';
 
 var wizards = [];
 var userDialog = document.querySelector('.setup');
@@ -31,7 +33,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template').c
 // открытие/закрытие окна насторойками
 
 var onPopupEscPress = function (evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === KEY_ESC) {
     evt.preventDefault();
     userDialog.classList.add('hidden');
   }
@@ -48,24 +50,28 @@ var popupClose = function () {
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', popupOpen);
+setupOpen.addEventListener('click', function () {
+  popupOpen();
+});
 
 setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === KEY_ENTER) {
     popupOpen();
   }
 });
 
-setupClose.addEventListener('click', popupClose);
+setupClose.addEventListener('click', function () {
+  popupClose();
+});
 
 setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === KEY_ENTER) {
     popupClose();
   }
 });
 
 // настройки мага
-var creatGetNextElement = function (array) {
+var getNextElement = function (array) {
   var index = 0;
   return function () {
     if (index === array.length) {
@@ -77,26 +83,26 @@ var creatGetNextElement = function (array) {
   };
 };
 
-var getNextCoatColor = creatGetNextElement(COAT_COLOR);
-var getNextEyesColor = creatGetNextElement(EYES_COLOR);
-var getNextFireballColor = creatGetNextElement(FIREBALL_COLORS);
+var getNextCoatColor = getNextElement(COAT_COLOR);
+var getNextEyesColor = getNextElement(EYES_COLOR);
+var getNextFireballColor = getNextElement(FIREBALL_COLORS);
 
 wizardCoat.addEventListener('click', function () {
-  var carentCoatColor = getNextCoatColor();
-  wizardCoat.style.fill = carentCoatColor;
-  coatColorInput.value = carentCoatColor;
+  var currentCoatColor = getNextCoatColor();
+  wizardCoat.style.fill = currentCoatColor;
+  coatColorInput.value = currentCoatColor;
 });
 
 wizardEyes.addEventListener('click', function () {
-  var carentEyesColor = getNextEyesColor();
-  wizardEyes.style.fill = carentEyesColor;
-  eyesColorInput.value = carentEyesColor;
+  var currentEyesColor = getNextEyesColor();
+  wizardEyes.style.fill = currentEyesColor;
+  eyesColorInput.value = currentEyesColor;
 });
 
 setupFireball.addEventListener('click', function () {
-  var carentFireballColor = getNextFireballColor();
-  setupFireball.style.background = carentFireballColor;
-  fireballColorInput.value = carentFireballColor;
+  var currentFireballColor = getNextFireballColor();
+  setupFireball.style.background = currentFireballColor;
+  fireballColorInput.value = currentFireballColor;
 });
 
 // отрисовка магов
