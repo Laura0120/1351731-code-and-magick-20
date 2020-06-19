@@ -14,8 +14,8 @@
     for (var i = 0; i < WIZARDS_COUNT; i++) {
       generatedWizards.push({
         name: window.util.getRandomItem(NAME) + ' ' + window.util.getRandomItem(SURNAME),
-        coatColor: window.util.getRandomItem(window.main.COAT_COLOR),
-        eyesColor: window.util.getRandomItem(window.main.EYES_COLOR),
+        coatColor: window.util.getRandomItem(window.setup.COAT_COLOR),
+        eyesColor: window.util.getRandomItem(window.setup.EYES_COLOR),
       });
     }
     return generatedWizards;

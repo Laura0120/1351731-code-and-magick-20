@@ -1,12 +1,21 @@
 'use strict';
 
 (function () {
+  var COAT_COLOR = [
+    'rgb(241, 43, 107)',
+    'rgb(146, 100, 161)',
+    'rgb(56, 159, 117)',
+    'rgb(215, 210, 55)',
+    ' rgb(0, 0, 0)',
+    'rgb(101, 137, 164)',
+  ];
+  var EYES_COLOR = ['red', 'blue', 'yellow', 'green', 'black'];
   var FIREBALL_COLORS = ['#30a8ee', '#5ce6c0', '#e848d5', '#e6e848', '#ee4830'];
 
-  var setupWizard = document.querySelector('.setup-wizard');
+  var setupWizard = window.dialog.userDialog.querySelector('.setup-wizard');
   var wizardCoat = setupWizard.querySelector('.wizard-coat');
   var wizardEyes = setupWizard.querySelector('.wizard-eyes');
-  var setupFireball = document.querySelector('.setup-fireball-wrap');
+  var setupFireball = window.dialog.userDialog.querySelector('.setup-fireball-wrap');
   var coatColorInput = window.dialog.userDialog.querySelector('#coat-color');
   var eyesColorInput = window.dialog.userDialog.querySelector('#eyes-color');
   var fireballColorInput = window.dialog.userDialog.querySelector('#fireball-color');
@@ -23,8 +32,8 @@
     };
   };
 
-  var getNextCoatColor = getNextElement(window.main.COAT_COLOR);
-  var getNextEyesColor = getNextElement(window.main.EYES_COLOR);
+  var getNextCoatColor = getNextElement(COAT_COLOR);
+  var getNextEyesColor = getNextElement(EYES_COLOR);
   var getNextFireballColor = getNextElement(FIREBALL_COLORS);
 
   wizardCoat.addEventListener('click', function () {
@@ -44,4 +53,9 @@
     setupFireball.style.background = currentFireballColor;
     fireballColorInput.value = currentFireballColor;
   });
+
+  window.setup = {
+    COAT_COLOR: COAT_COLOR,
+    EYES_COLOR: EYES_COLOR,
+  };
 })();
