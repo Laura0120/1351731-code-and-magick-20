@@ -4,9 +4,10 @@
   var userDialog = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = userDialog.querySelector('.setup-close');
+  var form = userDialog.querySelector('.setup-wizard-form');
 
   var onPopupEscPress = function (evt) {
-    if (evt.key === window.main.KEY_ESC) {
+    if (evt.key === window.util.KEY_ESC) {
       evt.preventDefault();
       userDialog.classList.add('hidden');
     }
@@ -42,6 +43,13 @@
       popupClose();
     }
   });
+
+  var submitHandler = function (evt) {
+    window.backend.save(new FormData(form), popupClose, window.backend.errorHandler);
+    evt.preventDefault();
+  };
+
+  form.addEventListener('submit', submitHandler);
 
   window.dialog = {
     userDialog: userDialog,
