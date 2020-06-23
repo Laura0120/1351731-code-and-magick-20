@@ -53,9 +53,4 @@
     setupFireball.style.background = currentFireballColor;
     fireballColorInput.value = currentFireballColor;
   });
-
-  window.setup = {
-    COAT_COLOR: COAT_COLOR,
-    EYES_COLOR: EYES_COLOR,
-  };
 })();
