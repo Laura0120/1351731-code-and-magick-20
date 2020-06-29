@@ -37,20 +37,22 @@
   var getNextFireballColor = getNextElement(FIREBALL_COLORS);
 
   wizardCoat.addEventListener('click', function () {
-    var currentCoatColor = getNextCoatColor();
-    wizardCoat.style.fill = currentCoatColor;
-    coatColorInput.value = currentCoatColor;
+    var newColor = getNextCoatColor();
+    wizardCoat.style.fill = newColor;
+    coatColorInput.value = newColor;
+    window.wizards.onCoatChange(newColor);
   });
 
   wizardEyes.addEventListener('click', function () {
-    var currentEyesColor = getNextEyesColor();
-    wizardEyes.style.fill = currentEyesColor;
-    eyesColorInput.value = currentEyesColor;
+    var newColor = getNextEyesColor();
+    wizardEyes.style.fill = newColor;
+    eyesColorInput.value = newColor;
+    window.wizards.onEyesChange(newColor);
   });
 
   setupFireball.addEventListener('click', function () {
-    var currentFireballColor = getNextFireballColor();
-    setupFireball.style.background = currentFireballColor;
-    fireballColorInput.value = currentFireballColor;
+    var fireballColor = getNextFireballColor();
+    setupFireball.style.background = fireballColor;
+    fireballColorInput.value = fireballColor;
   });
 })();
